@@ -37,7 +37,7 @@
   "gradient_accumulation_steps": 1,
 
   "epochs": 10,
-  "max_steps": 20000,
+  "max_steps": 8000,
 
   "learning_rate": 3e-4,
   "weight_decay": 0.1,
@@ -54,7 +54,7 @@
 
   "early_stopping": {
     "enabled": true,
-    "patience_steps": 2000,
+    "patience_steps": 500,
     "min_delta": 0.0
   },
 
@@ -81,3 +81,4 @@
   }
 
   
+
