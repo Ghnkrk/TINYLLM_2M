@@ -31,7 +31,7 @@ def load_texts(cfg):
         text_col = "text"
 
     elif name == "simplewiki":
-        ds = load_dataset("wikimedia/wikipedia","20231101.simple",split="train)
+        ds = load_dataset("wikimedia/wikipedia","20231101.simple",split="train")
         text_col = "text"
 
     else:
@@ -98,5 +98,6 @@ def train_tokenizer():
 
 if __name__ == "__main__":
     train_tokenizer()
+
 
 
