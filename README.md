@@ -21,10 +21,13 @@ The project experiments with training decoder-only language models in the 2M–2
 
 ## Features
 
-- **Tokenizer Training**: Train a SentencePiece tokenizer for your dataset.
-- **Dataset Processing**: Download and preprocess datasets for model training.
-- **Configurable Architecture**: Easily customize model and training configurations.
-- **Lightweight Setup**: A simple yet robust setup for experimentation.
+**Tokenizer Training:** Train a SentencePiece tokenizer directly on the target dataset to ensure the vocabulary matches the data the model is trained on.
+
+**Dataset Processing:** Load, filter, and chunk raw text datasets into fixed-length sequences suitable for autoregressive language modeling.
+
+**Configurable Architecture:** Define model size, depth, and training behavior through configuration files, making it easy to experiment with different setups.
+
+**Lightweight Setup:** Keep the codebase minimal and explicit, focusing on clarity and control rather than heavy abstractions.
 
 ---
 
@@ -46,19 +49,12 @@ $ pip install -r requirements.txt
 
 ## Usage
 
-### Dataset Processing
-
-Run the following command to download and preprocess the dataset:
-
-```bash
-$ python data.py
-```
-
 ### Tokenizer Training
 
 To train the SentencePiece tokenizer, execute:
 
 ```bash
+#Edit the config file path in the code accordingly
 $ python tokenizer/tokenizer_train.py
 ```
 
@@ -67,6 +63,7 @@ $ python tokenizer/tokenizer_train.py
 Initiate model training:
 
 ```bash
+#Configure the config file as per your requirement.
 $ python train.py --config config_{size}.json
 ```
 Replace `{size}` with the desired configuration (e.g., `small` or `large`). You can customize the configuration files in the `configs/` directory.
@@ -88,8 +85,8 @@ TINYLLM/
 ├── tokenizer/
 │   └── tokenizer_train.py    # Script to train the tokenizer
 ├── configs/
-│   └── config_small.json     # Configuration for small model
-│   └── config_large.json     # Configuration for large model
+│   └── config_2M.json     # Configuration for small model
+│   └── config_15M.json     # Configuration for large model
 ├── data.py                   # Script to download and process dataset
 ├── train.py                  # Script to train the model
 ├── check_params.py           # Script to check model parameters
@@ -102,8 +99,8 @@ TINYLLM/
 
 The repository includes two configuration files:
 
-- **`config_small.json`**: Defines parameters for a smaller model.
-- **`config_large.json`**: Defines parameters for a larger model.
+- **`config_2M.json`**: Defines parameters for a smaller model.
+- **`config_15M.json`**: Defines parameters for a larger model.
 
 You can edit these files to suit your needs. Pass the required configuration file to scripts, such as `train.py`, to modify training behavior.
 
@@ -113,11 +110,15 @@ You can edit these files to suit your needs. Pass the required configuration fil
 
 This repository implements a moderately complex language model architecture. At its core, it includes:
 
-- **Transformer Encoding Layers**: Stack of transformer layers for token processing.
-- **Positional Encoding**: Encodes token positions to provide sequence awareness.
-- **Attention Mechanisms**: Implements scaled dot-product attention for token interaction.
-- **Feedforward Networks**: Fully connected layers for handling token embeddings.
-- **Decoder**: Optional components tailored for downstream tasks.
+-**Transformer Layers**: A stack of transformer blocks composed of self-attention and feedforward sublayers for contextual token processing.
+
+-**Rotary Positional Encoding (RoPE)**: Applied within the attention mechanism to inject relative positional information without explicit position embeddings.
+
+-**Self-Attention Mechanism**: Uses scaled dot-product self-attention to allow each token to attend to other tokens in the sequence.
+
+-**Feedforward Networks**: Position-wise feedforward layers that transform token representations after attention, enabling non-linear feature learning.
+
+-**Decoder-Only Architecture**: Uses masked self-attention for autoregressive language modeling, where each token attends only to past tokens (no encoder–decoder cross-attention).
 
 ---
 
@@ -125,13 +126,10 @@ This repository implements a moderately complex language model architecture. At 
 
 Add your screenshots below for better visualization. Replace these placeholders with your images:
 
-- Training Workflow:
+- Autoregressive Architecture:
 
-`![Training Screenshot](path/to/your/image.png)`
+<img width="847" height="1080" alt="Capture" src="https://github.com/user-attachments/assets/10c9b0ce-0027-4345-8e5f-7a419d929b86" />
 
-- Inference Results:
-
-`![Inference Screenshot](path/to/your/image.png)`
 
 ---
 
