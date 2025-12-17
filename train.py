@@ -19,7 +19,7 @@ import sentencepiece as spm
 # Utils
 # -------------------------------------------------
 
-def load_config(path="./config_20M.json"):
+def load_config(path="./config/config_20M.json"):
     with open(path, "r") as f:
         return json.load(f)
 
@@ -246,6 +246,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
