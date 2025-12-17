@@ -77,6 +77,13 @@ $ python check_params.py
 
 ---
 
+### Inference
+
+```
+$ python inference.py --prompt "Once upon a time..."
+#use --top_p --top_k --repetition_penalty --temperature to play with the logits.
+```
+
 ## Repository Structure
 
 ```
