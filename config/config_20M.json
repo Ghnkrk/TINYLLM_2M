@@ -1,0 +1,84 @@
+
+{
+    "experiment_name": "tinylm_10m",
+  
+    "seed": 42,
+  
+    "dataset": {
+      "name": "simplewiki",
+      "max_samples": null,
+      "min_text_length": 30
+    },
+  
+    "tokenizer": {
+      "model_path": "tokenizer/tokenizer10m_sp.model",
+      "vocab_size": 12000,
+      "model_type": "bpe",
+      "character_coverage": 1.0
+    },
+  
+    "model": {
+      "architecture": "decoder_only",
+      "num_layers": 8,
+      "d_model": 256,
+      "num_heads": 8,
+      "d_ffn": 1024,
+      "max_len": 256,
+      "activation": "swiglu",
+      "norm_type": "rmsnorm",
+      "use_rope": true,
+      "dropout": 0.05
+    },
+  
+    "training": {
+  "objective": "causal_lm",
+
+  "block_size": 256,
+  "batch_size": 64,
+  "gradient_accumulation_steps": 1,
+
+  "epochs": 10,
+  "max_steps": 8000,
+
+  "learning_rate": 3e-5,
+  "weight_decay": 0.1,
+  "betas": [0.9, 0.95],
+
+  "warmup_ratio": 0.1,
+  "lr_scheduler": "cosine",
+
+  "grad_clip": 1.0,
+  "mixed_precision": true,
+
+  "log_every_steps": 50,
+  "eval_every_steps": 500,
+
+  "early_stopping": {
+    "enabled": true,
+    "patience_steps": 1000,
+    "min_delta": 0.2
+  },
+
+  "checkpointing": {
+    "save_best_only": true,
+    "output_dir": "checkpoints",
+    "metric": "val_loss"
+  }
+},
+  
+    "wandb": {
+      "project": "TinyLLM10M",
+      "entity": null,
+      "log_model": true
+    },
+  
+    "inference": {
+      "max_new_tokens": 100,
+      "temperature": 0.8,
+      "top_k": 40,
+      "top_p": 0.9,
+      "repetition_penalty": 1.1
+    }
+  }
+
+  
