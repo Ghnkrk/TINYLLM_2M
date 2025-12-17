@@ -221,7 +221,7 @@ def main():
                 if val_loss < best_val_loss - early_cfg["min_delta"]:
                     best_val_loss = val_loss
                     steps_since_improve = 0
-                    torch.save(model.state_dict(), "checkpoint/best_model.pt")
+                    torch.save(model.state_dict(), "best_model.pt")
                     print("💾 Best model saved")
                 else:
                     steps_since_improve += eval_every_steps
@@ -246,5 +246,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
