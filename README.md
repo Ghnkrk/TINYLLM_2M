@@ -75,7 +75,6 @@ To verify the model size before training, use:
 $ python check_params.py
 ```
 
----
 
 ### Inference
 
@@ -83,6 +82,8 @@ $ python check_params.py
 $ python inference.py --prompt "Once upon a time..."
 #use --top_p --top_k --repetition_penalty --temperature to play with the logits.
 ```
+
+---
 
 ## Repository Structure
 
